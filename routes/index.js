@@ -10,6 +10,14 @@ router.get("/", (req, res) => {
   res.render("index");
 });
 
+router.get("/sneakers/collection", (req, res, next) => {
+  SneakerModel.find()
+  .then((sneakers) => {
+    res.render("products", { sneakers })
+  })
+ .catch(next);
+});
+
 router.get("/sneakers/:cat", async (req, res, next) => {
  try { console.log(req.params);
   res.render("products", {

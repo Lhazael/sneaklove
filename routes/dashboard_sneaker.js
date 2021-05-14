@@ -1,5 +1,6 @@
 const express = require("express"); // import express in this module
 const router = new express.Router(); // create an app sub-module (router)
+// const uploader = require("./../config/cloudinary");
 
 const SneakerModel = require("./../models/Sneaker");
 const TagModel = require("./../models/Tag");
@@ -21,6 +22,10 @@ router.get("/prod-add", (req, res) => {
 //   POS - ADD sneaker
 
 router.post("/prod-add", (req, res, next) => {
+// const newSneaker = {...req.body};
+//     if (!req.file) newSneaker.picture = undefined;
+//   else newSneaker.picture = req.file.path;
+
   SneakerModel.create(req.body)
     .then((dbResult) => {
       console.log(dbResult);
