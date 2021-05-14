@@ -5,12 +5,6 @@ const SneakerModel = require("./../models/Sneaker");
 const TagModel = require("./../models/Tag");
 const UserModel = require("./../models/User");
 
-// router.get(“/product1”, (req, res) => {
-//     res.render(“one_product.hbs”);
-//   });
-//   router.get(“/edit”, (req, res) => {
-//     res.render(“product_edit.hbs”);
-//   });
 router.get("/", (req, res, next) => {
   SneakerModel.find()
     .then((sneakers) => {
@@ -21,12 +15,11 @@ router.get("/", (req, res, next) => {
 });
 
 router.get("/prod-add", (req, res) => {
-  // SneakerModel.find()
-  //   .then((sneakers) => {
   res.render("products_add.hbs");
 });
 
 //   POS - ADD sneaker
+
 router.post("/prod-add", (req, res, next) => {
   SneakerModel.create(req.body)
     .then((dbResult) => {
@@ -49,18 +42,11 @@ router.get("/prod-edit/:id", (req, res, next) => {
 });
 
 router.post("/prod-edit/:id", (req, res, next) => {
-//   try {
-//     const sneaker = { ...req.body };
-//     await SneakerModel.findByIdAndUpdate(req.params.id, sneaker);
-//     res.redirect("/dashboard");
-//   } catch (err) {
-//     next(err);
-//   }
-SneakerModel.findByIdAndUpdate(req.params.id, req.body)
-.then((sneaker) => {
-    res.redirect("/dashboard");
-})
-.catch(next);
+  SneakerModel.findByIdAndUpdate(req.params.id, req.body)
+    .then((sneaker) => {
+      res.redirect("/dashboard");
+    })
+    .catch(next);
 });
 
 // DELETE
